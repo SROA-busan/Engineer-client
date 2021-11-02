@@ -2,13 +2,12 @@ package com.example.engineer
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.example.engineer.databinding.MainActivityBinding
 import com.example.engineer.schedule.ScheduleFragment
-import com.example.engineer.setting.EvaluationFragment
+import com.example.engineer.setting.ConfirmFragment
 import com.example.engineer.setting.SettingFragment
 import java.lang.Exception
 
@@ -70,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 // 평가조회
                 R.id.evaluation -> {
-                    replaceFragment(EvaluationFragment())
+                    replaceFragment(ConfirmFragment())
                     true
                 }
                 //설정

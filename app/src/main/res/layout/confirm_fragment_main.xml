@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginTop="@dimen/main_menu_margin_top"
+            android:background="@drawable/button_shape"
+            android:id="@+id/confirm_warehousing"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_menu_height">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="입고 현황 조회"
+                android:textStyle="bold"
+                android:textSize="@dimen/menu_font_size"
+                android:textColor="@color/gray"
+                android:gravity="center"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="@dimen/pageMarginAndOffset"
+                android:layout_marginStart="@dimen/pageMarginAndOffset"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/arrow_length"
+                android:layout_height="@dimen/arrow_length"
+                android:src="@drawable/baseline_arrow_forward_ios_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:scrollbarSize="10dp"
+                android:layout_marginRight="@dimen/pageMarginAndOffset"
+                android:layout_marginEnd="@dimen/pageMarginAndOffset"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginTop="@dimen/main_menu_margin_top"
+            android:id="@+id/confirm_evaluation"
+            android:background="@drawable/button_shape"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_menu_height">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="고객 평가 조회"
+                android:textStyle="bold"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/menu_font_size"
+                android:gravity="center"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="@dimen/pageMarginAndOffset"
+                android:layout_marginStart="@dimen/pageMarginAndOffset"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/arrow_length"
+                android:layout_height="@dimen/arrow_length"
+                android:src="@drawable/baseline_arrow_forward_ios_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:scrollbarSize="10dp"
+                android:layout_marginRight="@dimen/pageMarginAndOffset"
+                android:layout_marginEnd="@dimen/pageMarginAndOffset"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

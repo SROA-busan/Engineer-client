@@ -30,10 +30,10 @@ class ScheduleAdapter(private val dataset: ArrayList<ScheduleData>)
     }
 
     inner  class ScheduleDataViewHolder(view: View) : RecyclerView.ViewHolder(view){
-        val dateTime = view.findViewById<TextView>(R.id.schedule_datetime)
-        val product = view.findViewById<TextView>(R.id.schedule_product)
-        val address = view.findViewById<TextView>(R.id.schedule_address)
-        val process = view.findViewById<TextView>(R.id.schedule_process)
+        val dateTime = view.findViewById<TextView>(R.id.confirm_product)
+        val product = view.findViewById<TextView>(R.id.confirm_datetime)
+        val address = view.findViewById<TextView>(R.id.confirm_content)
+        val process = view.findViewById<TextView>(R.id.confirm_grade)
         val phoneNum = view.findViewById<TextView>(R.id.schedule_phoneNum)
 
 
