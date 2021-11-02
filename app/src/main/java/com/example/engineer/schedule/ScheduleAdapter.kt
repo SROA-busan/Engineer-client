@@ -11,62 +11,46 @@ import com.example.engineer.dto.ScheduleData
 class ScheduleAdapter(private val dataset: ArrayList<ScheduleData>)
     : RecyclerView.Adapter<ScheduleAdapter.ScheduleDataViewHolder>(){
 
-//    interface OnItemClickListener{
-//        fun onItemClick(view: View, data: ScheduleData, pos: Int)
-//    }
-//
-//    private var listener: OnItemClickListener? = null
-//    fun setOnItemClickListener(listener: OnItemClickListener){
-//        this.listener = listener
-//    }
-
     interface OnItemClickListener{
         fun onItemClick(view: View, position: Int)
     }
+
+//    private var
     private lateinit var mOnItemClickListener: OnItemClickListener
 
-    fun setOnItemClickListenr(onItemClickListener: OnItemClickListener){
+    fun setOnItemClickListener(onItemClickListener: OnItemClickListener){
         mOnItemClickListener = onItemClickListener
     }
 
     inner  class ScheduleDataViewHolder(view: View) : RecyclerView.ViewHolder(view){
-        val dateTime = view.findViewById<TextView>(R.id.confirm_product)
-        val product = view.findViewById<TextView>(R.id.confirm_datetime)
-        val address = view.findViewById<TextView>(R.id.confirm_content)
-        val process = view.findViewById<TextView>(R.id.confirm_grade)
+        val dateTime = view.findViewById<TextView>(R.id.schedule_datetime)
+        val product = view.findViewById<TextView>(R.id.schedule_product)
+        val address = view.findViewById<TextView>(R.id.schedule_address)
+        val process = view.findViewById<TextView>(R.id.schedule_process)
         val phoneNum = view.findViewById<TextView>(R.id.schedule_phoneNum)
 
 
         init {
             view.setOnClickListener{
                 val pos = adapterPosition
-                if(pos != null && mOnItemClickListener != null){
+                if(pos != RecyclerView.NO_POSITION && mOnItemClickListener != null){
                     mOnItemClickListener.onItemClick(view, pos)
                 }
-
             }
         }
-//        fun bind(item: ScheduleData){
-//            val pos = adapterPosition
-//            if(pos != RecyclerView.NO_POSITION){
-//                itemView.setOnClickListener{
-//                    listener?.onItemClick(itemView,item,pos)
-//                }
-//            }
-//        }
 
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScheduleDataViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.scheduel_viewgroup,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.schedule_viewgroup,parent,false)
         return ScheduleDataViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ScheduleAdapter.ScheduleDataViewHolder, position: Int) {
         holder.dateTime.text  = dataset[position].dateTime
-        holder.product.text  = dataset[position].dateTime
-        holder.address.text  = dataset[position].dateTime
-        holder.process.text  = dataset[position].dateTime
-        holder.phoneNum.text  = dataset[position].dateTime
+        holder.product.text  = dataset[position].product
+        holder.address.text  = dataset[position].address
+        holder.process.text  = dataset[position].process
+        holder.phoneNum.text  = dataset[position].phoneNum
 
     }
 

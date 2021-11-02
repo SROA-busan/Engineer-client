@@ -7,7 +7,7 @@ import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.example.engineer.databinding.MainActivityBinding
 import com.example.engineer.schedule.ScheduleFragment
-import com.example.engineer.setting.ConfirmFragment
+import com.example.engineer.confirm.ConfirmFragment
 import com.example.engineer.setting.SettingFragment
 import java.lang.Exception
 

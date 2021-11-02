@@ -33,7 +33,7 @@ class ConfirmFragment: Fragment() {
 
         setTitle("조회")
         // 버튼 이벤트 설정
-        setButtonEvent()
+//        setButtonEvent()
     }
 
     // 툴바 타이틀 설정
@@ -42,16 +42,16 @@ class ConfirmFragment: Fragment() {
         mMainActivity.setTitle(title)
     }
 
-    fun setButtonEvent(){
-        // 입고 현황 조회
-        binding.confirmWarehousing.setOnClickListener {
-            startActivity(Intent(context, ConfirmWarehousingActivity::class.java))
-        }
-        // 고객 평가 조회
-        binding.confirmEvaluation.setOnClickListener {
-            startActivity(Intent(context, ConfirmEvaluationActivity::class.java))
-        }
-    }
+//    fun setButtonEvent(){
+//        // 입고 현황 조회
+//        binding.confirmWarehousing.setOnClickListener {
+//            startActivity(Intent(context, ConfirmWarehousingActivity::class.java))
+//        }
+//        // 고객 평가 조회
+//        binding.confirmEvaluation.setOnClickListener {
+//            startActivity(Intent(context, ConfirmEvaluationActivity::class.java))
+//        }
+//    }
 
     override fun onDestroyView() {
         _binding = null

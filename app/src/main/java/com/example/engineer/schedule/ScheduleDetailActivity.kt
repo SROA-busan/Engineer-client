@@ -1,27 +1,23 @@
 package com.example.engineer.schedule
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.engineer.databinding.SearchActivityDetailBinding
+import android.os.Bundle
+import com.example.engineer.databinding.ScheduleActivityDetailBinding
 import com.example.engineer.dto.ScheduleData
 
 class ScheduleDetailActivity : AppCompatActivity() {
-    companion object{
-        val dataset = ArrayList<ScheduleData>()
-    }
-    private lateinit var binding: SearchActivityDetailBinding
+    // intent 넘어온 값 데이터 바인딩 하기
+    private lateinit var binding: ScheduleActivityDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = SearchActivityDetailBinding.inflate(layoutInflater)
+        binding = ScheduleActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // 인텐트 호출
+        val intent = getIntent()
+        var scheduleData = intent.getSerializableExtra("scheduleData") as ScheduleData
 
-//        setRecycler()
-
-//        // 인텐트 호출
-//        val intent = getIntent()
-//        var scheduleData = ScheduleData()
+        binding.scheduleDatta = scheduleData
     }
-
 }

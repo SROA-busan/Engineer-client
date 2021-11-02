@@ -11,6 +11,9 @@
             android:theme="@style/Theme.Engineer">
         <activity android:name=".schedule.ScheduleDetailActivity">
         </activity>
+        <activity android:name=".ScheduleDetailActivity">
+        </activity>
+        <activity android:name=".confirm.ConfirmEvaluationActivity"/>
         <activity
                 android:name=".SplashActivity"
                 android:theme="@style/Theme.AppCompat.Light.NoActionBar">

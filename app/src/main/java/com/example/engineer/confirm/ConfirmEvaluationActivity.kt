@@ -13,7 +13,7 @@ class ConfirmEvaluationActivity : AppCompatActivity() {
 
     private lateinit var binding: ConfirmActivityEvaluationBinding
 
-    override fun oncreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ConfirmActivityEvaluationBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -28,7 +28,6 @@ class ConfirmEvaluationActivity : AppCompatActivity() {
             dateTime = "0",
             product = "0",
             grade = "000",
-            process = "0000?",
             content = "00000000000"
         )
         dataset.add(mConfirmData)
