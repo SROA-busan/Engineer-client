@@ -1,6 +1,7 @@
 package com.example.engineer.dto
 
 import com.example.engineer.R
+import java.io.Serializable
 
 data class ScheduleData(
     val dateTime: String = "0",
@@ -9,4 +10,4 @@ data class ScheduleData(
     val process: String = "3",
     val phoneNum: String = "4",
     val content: String = "5"
-)
+) : Serializable

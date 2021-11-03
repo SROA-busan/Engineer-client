@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 // 평가조회
-                R.id.evaluation -> {
+                R.id.confirm -> {
                     replaceFragment(ConfirmFragment())
                     true
                 }

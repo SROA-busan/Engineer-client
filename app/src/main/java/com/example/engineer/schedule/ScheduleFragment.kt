@@ -34,7 +34,7 @@ class ScheduleFragment : Fragment() {
 
         setTitle("일정")
         // recyclerView 설정
-          setRecyclerView()
+        setRecyclerView()
     }
 
     //툴바 타이틀 설정
@@ -45,7 +45,7 @@ class ScheduleFragment : Fragment() {
 
 
     // 서버에서 데이터 리스트 받아오기
-    fun getSearchData(){}
+    fun getSearchData() {}
 
     //recyclerView 호출
     fun setRecyclerView() {
@@ -61,11 +61,12 @@ class ScheduleFragment : Fragment() {
         // layoutManager 설정
 
         adapter.setOnItemClickListener(object : ScheduleAdapter.OnItemClickListener {
-                override fun onItemClick(view: View, position: Int) {
+            override fun onItemClick(view: View, position: Int) {
+                intent.putExtra("scheduleData",dataset.get(position))
                 startActivity(intent)
             }
         })
-        mRecyclerView.adapter=adapter
+        mRecyclerView.adapter = adapter
 
 
     }
