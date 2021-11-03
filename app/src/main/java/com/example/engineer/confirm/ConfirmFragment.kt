@@ -7,13 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.engineer.MainActivity
-import com.example.engineer.R
 import com.example.engineer.databinding.ConfirmFragmentMainBinding
-import com.example.engineer.dto.ConfirmData
+import com.example.engineer.dto.EvaluationData
 
 class ConfirmFragment: Fragment() {
     companion object{
-        val dataset = ArrayList<ConfirmData>()
+        val dataset = ArrayList<EvaluationData>()
     }
 
     private var _binding: ConfirmFragmentMainBinding? = null
@@ -33,7 +32,7 @@ class ConfirmFragment: Fragment() {
 
         setTitle("조회")
         // 버튼 이벤트 설정
-//        setButtonEvent()
+        setButtonEvent()
     }
 
     // 툴바 타이틀 설정
@@ -42,16 +41,16 @@ class ConfirmFragment: Fragment() {
         mMainActivity.setTitle(title)
     }
 
-//    fun setButtonEvent(){
-//        // 입고 현황 조회
-//        binding.confirmWarehousing.setOnClickListener {
-//            startActivity(Intent(context, ConfirmWarehousingActivity::class.java))
-//        }
-//        // 고객 평가 조회
-//        binding.confirmEvaluation.setOnClickListener {
-//            startActivity(Intent(context, ConfirmEvaluationActivity::class.java))
-//        }
-//    }
+    fun setButtonEvent(){
+        // 입고 버튼
+        binding.confirmWarehousing.setOnClickListener{
+            startActivity(Intent(context, ConfirmWarehousingActivity::class.java))
+        }
+        // 고객 평가 조회 버튼
+        binding.confirmEvaluation.setOnClickListener {
+            startActivity(Intent(context, ConfirmEvaluationActivity::class.java))
+        }
+    }
 
     override fun onDestroyView() {
         _binding = null

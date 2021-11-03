@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.engineer.R
-import com.example.engineer.dto.ConfirmData
+import com.example.engineer.dto.EvaluationData
 
-class ConfirmEvaluationAdapter(private val dataset: ArrayList<ConfirmData>) : RecyclerView.Adapter<ConfirmEvaluationAdapter.ConfirmMainViewHolder>() {
+class ConfirmEvaluationAdapter(private val dataset: ArrayList<EvaluationData>) : RecyclerView.Adapter<ConfirmEvaluationAdapter.ConfirmMainViewHolder>() {
     // 커스텀 리스너
     interface onItemClickListener {
         fun onItemclick(view: View, position: Int)
@@ -23,10 +23,10 @@ class ConfirmEvaluationAdapter(private val dataset: ArrayList<ConfirmData>) : Re
     }
 
     inner class ConfirmMainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val product = view.findViewById<TextView>(R.id.confirm_product)
-        val dateTime = view.findViewById<TextView>(R.id.confirm_datetime)
-        val grade = view.findViewById<TextView>(R.id.confirm_grade)
-        val content = view.findViewById<TextView>(R.id.confirm_content)
+        val product = view.findViewById<TextView>(R.id.evaluation_product)
+        val dateTime = view.findViewById<TextView>(R.id.evaluation_datetime)
+        val grade = view.findViewById<TextView>(R.id.evaluation_grade)
+        val content = view.findViewById<TextView>(R.id.evaluation_content)
 
         init {
             view.setOnClickListener {

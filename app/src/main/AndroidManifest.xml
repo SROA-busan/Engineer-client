@@ -9,6 +9,12 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.Engineer">
+        <activity android:name=".singnInActivity">
+        </activity>
+        <activity android:name=".confirm.ConfirmEvaluationDetailActivity">
+        </activity>
+        <activity android:name=".confirm.ConfirmWarehousingActivity">
+        </activity>
         <activity android:name=".schedule.ScheduleDetailActivity">
         </activity>
         <activity android:name=".ScheduleDetailActivity">
