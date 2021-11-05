@@ -18,5 +18,6 @@ class ConfirmEvaluationDetailActivity : AppCompatActivity() {
         val intent = getIntent()
         var evaluationData = intent.getSerializableExtra("evaluationData") as EvaluationData
 
+        binding.evaluationData = evaluationData
     }
 }

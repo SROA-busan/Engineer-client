@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.engineer.databinding.SignInActivityBinding
 
-class singnInActivity : AppCompatActivity() {
+class SignInActivity : AppCompatActivity() {
     private lateinit var binding: SignInActivityBinding
     private val view get() = binding!!
 
@@ -17,9 +17,5 @@ class singnInActivity : AppCompatActivity() {
         binding.signInButton.setOnClickListener {
             startActivity(Intent(this,MainActivity::class.java))
         }
-
-
-
-
     }
 }

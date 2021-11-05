@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.engineer.databinding.ConfirmActivityEvaluationBinding
 import com.example.engineer.dto.EvaluationData
 
@@ -23,19 +24,22 @@ class ConfirmEvaluationActivity : AppCompatActivity() {
     }
 
     private fun setRecycler() {
-        val mRecyclerView = binding.evaluationRecyclerEvaluation
-
+        val mRecyclerView = binding.evaluationRecycler
         val mEvaluationData = EvaluationData()
+
         dataset.add(mEvaluationData)
 
-        val intent = Intent(applicationContext, ConfirmEvaluationActivity::class.java)
+        val intent = Intent(applicationContext, ConfirmEvaluationDetailActivity::class.java)
         val adapter = ConfirmEvaluationAdapter(dataset)
 
         adapter.setOnItemClickListener(object: ConfirmEvaluationAdapter.onItemClickListener{
             override fun onItemclick(view: View, position: Int) {
-//                intent.putExtra("confirmData", dataset.get(position))
+                intent.putExtra("evaluationData", dataset.get(position))
                 startActivity(intent)
             }
         })
+        mRecyclerView.adapter = adapter
+        mRecyclerView.layoutManager = LinearLayoutManager(applicationContext)
+
     }
 }

@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
                 name="evaluationData"
-                type="com.example.engineer.dto.ScheduleData"/>
+                type="com.example.engineer.dto.EvaluationData"/>
     </data>
     <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            xmlns:android="http://schemas.android.com/apk/res/android">
+    >
 
         <androidx.appcompat.widget.LinearLayoutCompat
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
                 android:orientation="vertical"
-                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -23,13 +21,24 @@
                     android:hint="냉장고"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/Schedule_detail_product"
+                    android:id="@+id/evaluation_detail_product"
                     android:layout_marginTop="@dimen/pageMarginAndOffset"
                     android:layout_marginLeft="@dimen/pageMargin"
                     android:layout_marginStart="@dimen/pageMargin"
                     android:textSize="25sp"
                     android:textColor="#000000"/>
 
+            <TextView
+                    android:text="@{evaluationData.grade}"
+                    android:hint="별별별별별"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/evaluation_detail_product4"
+                    android:layout_marginTop="@dimen/pageMarginHalf"
+                    android:layout_marginLeft="@dimen/pageMargin"
+                    android:layout_marginStart="@dimen/pageMargin"
+                    android:textSize="20sp"
+                    android:textColor="#000000"/>
             <TextView
                     android:text="@{evaluationData.content}"
                     android:hint="제품 상세내용"
@@ -42,7 +51,7 @@
                     android:scrollHorizontally="false"
                     android:minWidth="10dip"
                     android:maxWidth="5dip"
-                    android:id="@+id/search_detail_textArea"/>
+                    android:id="@+id/evaluation_detail_content"/>
 
             <TextView
                     android:text="@{evaluationData.dateTime}"
@@ -53,7 +62,7 @@
                     android:layout_marginStart="@dimen/pageMargin"
                     android:layout_marginTop="@dimen/pageMargin"
                     android:textSize="18sp"
-                    android:id="@+id/search_detail_inquiry_date"/>
+                    android:id="@+id/evaluation_detail_dataTime"/>
 
 
 
