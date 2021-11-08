@@ -17,5 +17,4 @@ class SettingPasswordActivity : AppCompatActivity() {
         _binding = SettingPasswordActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
-
 }
