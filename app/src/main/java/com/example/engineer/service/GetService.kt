@@ -1,6 +1,8 @@
 package com.example.engineer.service
 
 import com.example.engineer.dto.EngineerInfo
+import com.example.engineer.dto.EvaluationData
+import com.example.engineer.dto.ResponseWorkOfdateEngineer
 import com.example.engineer.dto.ScheduleHandling
 import retrofit2.Call
 import retrofit2.http.Body
@@ -21,14 +23,25 @@ interface GetSignInService{
 
 // 엔지니어 관련 api
 interface GetDataService{
-    // id로 엔지니어 정보 로드
+    //입고 현황 조회
+    @GET("/schedule/Engineer/InqueryWarehousingProduct/{id}")
+    fun getWarehousingProduct(@Path("id") id: String): Call<List<ResponseWorkOfdateEngineer>>
+    
+}
+//평가조회
+interface GetEvaluation {
+    //평가 조회
+    @GET("/evaluation/engineer/askEvaluation/{engineerNum}")
+    fun askEvalution(@Path("engineerNum") engineerNum: Long): Call<List<EvaluationData>>
 }
 
 //엔지니어 일정 로드
 interface GetRepairSchduleService{
+    //완료 여부 조회
     @POST("repair/engineer/requestForCompletion")
     fun requestForCompletion(@Body form: ScheduleHandling): Call<Boolean>
 
     @GET("/schedule/Engineer/MainPage/{id}")
     fun engineeerMainPage(@Path("id") id: String): Call<Any>
 }
+
