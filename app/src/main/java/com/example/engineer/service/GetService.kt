@@ -1,6 +1,7 @@
 package com.example.engineer.service
 
 import com.example.engineer.dto.EngineerInfo
+import com.example.engineer.dto.ScheduleHandling
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -21,4 +22,13 @@ interface GetSignInService{
 // 엔지니어 관련 api
 interface GetDataService{
     // id로 엔지니어 정보 로드
+}
+
+//엔지니어 일정 로드
+interface GetRepairSchduleService{
+    @POST("repair/engineer/requestForCompletion")
+    fun requestForCompletion(@Body form: ScheduleHandling): Call<Boolean>
+
+    @GET("/schedule/Engineer/MainPage/{id}")
+    fun engineeerMainPage(@Path("id") id: String): Call<Any>
 }
