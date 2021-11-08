@@ -1,13 +1,16 @@
 package com.example.engineer
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.example.engineer.databinding.MainActivityBinding
 import com.example.engineer.schedule.ScheduleFragment
 import com.example.engineer.confirm.ConfirmFragment
+import com.example.engineer.dto.ScheduleData
 import com.example.engineer.setting.SettingFragment
 import java.lang.Exception
 
@@ -21,11 +24,16 @@ class MainActivity : AppCompatActivity() {
         binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(view.root)
 
+        if(Intent().hasExtra("pageName")) {
+            val pageName = Intent().getStringExtra("pageName")!!
+            setDetailNextPage(pageName)
+        }
+
         setActionBar()
         replaceFragment(MainFragment())
         setNavFragment()
 
-    }
+        }
 
     //툴바 설정
     private fun setActionBar(){
@@ -51,6 +59,14 @@ class MainActivity : AppCompatActivity() {
     //툴바 메뉴 이벤트
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return super.onOptionsItemSelected(item)
+    }
+
+    // ScheduleDetailActivity에서 OK 눌렀을때 가는 프래그먼트
+    private fun setDetailNextPage(page: String){
+        when(page){
+            "schF" -> replaceFragment(ScheduleFragment())
+            "mainF" -> replaceFragment(MainFragment())
+        }
     }
 
     //하단 네비

@@ -38,7 +38,6 @@ class ScheduleAdapter(private val dataset: ArrayList<ScheduleData>)
                 }
             }
         }
-
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScheduleDataViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.schedule_viewgroup,parent,false)
@@ -46,12 +45,19 @@ class ScheduleAdapter(private val dataset: ArrayList<ScheduleData>)
     }
 
     override fun onBindViewHolder(holder: ScheduleAdapter.ScheduleDataViewHolder, position: Int) {
+        var process  = dataset[position].process
         holder.dateTime.text  = dataset[position].dateTime
         holder.product.text  = dataset[position].product
         holder.address.text  = dataset[position].address
-        holder.process.text  = dataset[position].process
         holder.phoneNum.text  = dataset[position].phoneNum
+        holder.process.text = process
 
+        when(process){
+            "방문예정" -> holder.process.setBackgroundResource(R.drawable.label_red)
+            "진행중" -> holder.process.setBackgroundResource(R.drawable.label_blue)
+            "입고" -> holder.process.setBackgroundResource(R.drawable.label_yellow)
+            "수리완료" -> holder.process.setBackgroundResource(R.drawable.label_green)
+        }
     }
 
     override fun getItemCount(): Int = dataset.size

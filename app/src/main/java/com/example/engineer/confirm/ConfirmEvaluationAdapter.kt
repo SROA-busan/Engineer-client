@@ -31,7 +31,6 @@ class ConfirmEvaluationAdapter(private val dataset: ArrayList<EvaluationData>) :
         init {
             view.setOnClickListener {
                 val pos = adapterPosition
-
                 if (pos != RecyclerView.NO_POSITION && mOnItemClickListener != null) {
                     mOnItemClickListener.onItemclick(view, pos)
                 }
@@ -40,7 +39,7 @@ class ConfirmEvaluationAdapter(private val dataset: ArrayList<EvaluationData>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ConfirmMainViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.confirm_viewgroup, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.confirm_evaluation_viewgroup, parent, false)
         return ConfirmMainViewHolder(view)
     }
 
@@ -48,7 +47,7 @@ class ConfirmEvaluationAdapter(private val dataset: ArrayList<EvaluationData>) :
         var grade = dataset[position].grade
         holder.product.text = dataset[position].product
         holder.dateTime.text = dataset[position].dateTime
-        holder.dateTime.text = dataset[position].content
+        holder.content.text = dataset[position].content
         holder.grade.text = grade
 
         // 평점상황별 색 변경
