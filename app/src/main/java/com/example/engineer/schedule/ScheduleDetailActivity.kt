@@ -21,21 +21,26 @@ class ScheduleDetailActivity : AppCompatActivity() {
         binding = ScheduleActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 인텐트 호출
-        val intent = getIntent()
-        var pageName = "mainF"
-        if(intent.hasExtra("pageName")) {
-            pageName = intent.getStringExtra("pageName")!!
-        }
-        var scheduleData = intent.getSerializableExtra("scheduleData") as ScheduleData
-
+        val scheduleData = intent.getSerializableExtra("scheduleData") as ScheduleData
         binding.scheduleData = scheduleData
 
+        setButtonEvent(null, scheduleData)
+    }
 
+    private fun setButtonEvent(pageName: String?, scheduleData: ScheduleData) {
+        val intent = Intent(applicationContext, MainActivity::class.java)
+        //ok버튼 비활성화
+        binding.scheduleDetailOkbutton.isEnabled = false
+        //OK버튼
+        binding.scheduleDetailOkbutton.setOnClickListener {
+            intent.putExtra("pageName", pageName)
+            startActivity(intent)
+        }
+
+        //라디오버튼 이벤트
         binding.scheduleDetailCheckboxGroup.setOnCheckedChangeListener { group, checkedId ->
             when(checkedId){
                 R.id.schedule_detail_ready -> {
-//                    Toast.makeText(this, "방문예정", Toast.LENGTH_SHORT).show()
                     scheduleData.process = "방문예정"
                 }
                 R.id.schedule_detail_start -> {
@@ -48,18 +53,8 @@ class ScheduleDetailActivity : AppCompatActivity() {
                     scheduleData.process = "수리완료"
                 }
             }
-        }
-        setButtonEvent(pageName)
-    }
-
-    private fun setButtonEvent(pageName: String) {
-        val intent = Intent(applicationContext, MainActivity::class.java)
-
-        binding.scheduleDetailOkbutton.setOnClickListener {
-            intent.putExtra("pageName", pageName)
-//            Log.e("detail : position", position.toString())
-            startActivity(intent)
-
+            //ok버튼 활성화
+            binding.scheduleDetailOkbutton.isEnabled = true
         }
     }
 }

@@ -13,7 +13,7 @@ import com.example.engineer.MainActivity
 import com.example.engineer.R
 import com.example.engineer.databinding.NavFragmentScheduleBinding
 import com.example.engineer.dto.ScheduleData
-import com.example.engineer.viewModel.ScheduleViewModel
+
 
 class ScheduleFragment : Fragment() {
     companion object {
@@ -70,7 +70,7 @@ class ScheduleFragment : Fragment() {
 
         val intent = Intent(context, ScheduleDetailActivity::class.java)
         intent.putExtra("scheduleData", mSchedule)
-        intent.putExtra("pageName", "schF")
+
         // 어댑터 설정
         val adapter = ScheduleAdapter(dataset)
         // layoutManager 설정
