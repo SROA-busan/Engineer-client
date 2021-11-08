@@ -1,11 +1,12 @@
 package com.example.engineer.dto
 
-import com.example.engineer.R
 import java.io.Serializable
+import java.sql.Timestamp
 
 class EvaluationData (
-    val dateTime: String = "0",
-    val product: String = "1",
-    val grade: String = "2",
-    val content: String = "3"
+    val classifyName: String,
+    val writeDate: Timestamp,
+    val content: String,
+    val score: Int
 ) : Serializable
+

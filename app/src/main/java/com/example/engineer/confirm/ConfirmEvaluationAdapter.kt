@@ -44,9 +44,10 @@ class ConfirmEvaluationAdapter(private val dataset: ArrayList<EvaluationData>) :
     }
 
     override fun onBindViewHolder(holder: ConfirmMainViewHolder, position: Int) {
-        var grade = dataset[position].grade
-        holder.product.text = dataset[position].product
-        holder.dateTime.text = dataset[position].dateTime
+        //임의로 넣은것 수정할 것(박상환)
+        var grade = dataset[position].score.toString()
+        holder.product.text = dataset[position].content
+        holder.dateTime.text = dataset[position].writeDate.toString()
         holder.content.text = dataset[position].content
         holder.grade.text = grade
 
