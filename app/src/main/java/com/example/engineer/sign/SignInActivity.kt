@@ -15,7 +15,8 @@ import retrofit2.Response
 class SignInActivity : AppCompatActivity() {
     companion object {
         //엔지니어 아이디
-        var engineerId = "binding.engineerId.text.toString()"
+        private lateinit var _EngineerId: String
+        val engineerId get() = _EngineerId
     }
 
     private lateinit var binding: SignInActivityBinding
@@ -26,10 +27,12 @@ class SignInActivity : AppCompatActivity() {
         binding = SignInActivityBinding.inflate(layoutInflater)
         setContentView(view.root)
 
+
         binding.signInButton.setOnClickListener {
+            _EngineerId = binding.engineerId.text.toString()
             //통신 성공 [박상환 - 11.08]
-//            signIn(engineerId, binding.password.text.toString())
-            startActivity(Intent(this, MainActivity::class.java))
+            signIn(engineerId, binding.password.text.toString())
+//            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 
@@ -41,18 +44,22 @@ class SignInActivity : AppCompatActivity() {
         service.login(id, pw).enqueue(object : Callback<Int> {
             // 서버 로그인 리턴
             override fun onResponse(call: Call<Int>, response: Response<Int>) {
-                // 성공 3
-                if (response.body() == 3) {
+                // 성공 0
+                if (response.body() == 0) {
                     Toast.makeText(applicationContext, "로그인 완료", Toast.LENGTH_SHORT).show();
                     startActivity(Intent(applicationContext, MainActivity::class.java))
                 }
-                // 존재하지 않는 아이디 1
+                // 존재하지 않는 아이디
                 else if (response.body() == 1)
                     Toast.makeText(applicationContext, "존재하지 않는 아이디", Toast.LENGTH_SHORT).show();
                 // 비밀번호 틀림 2
                 else if (response.body() == 2)
                     Toast.makeText(applicationContext, "비밀번호 틀림", Toast.LENGTH_SHORT).show();
-                // 그 외
+                // 최초 로그인시 3
+                else if (response.body() == 3) {
+                    Toast.makeText(applicationContext, "최초 로그인 입니다. 비밀번호를 변경해주세요", Toast.LENGTH_SHORT).show();
+                    startActivity(Intent(applicationContext, SettingPasswordActivity::class.java))
+                }
                 else
                     Log.d("상태: ", "response.body() = " + response.body())
             }
