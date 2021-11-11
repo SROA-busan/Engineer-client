@@ -54,11 +54,11 @@ class ConfirmEvaluationActivity : AppCompatActivity() {
     //고객 평가조회
     private fun getEvaluation(){
         val evaluationService = RetrofitInstance().getEvalutationInstance()
-        evaluationService.askEvalution(1).enqueue(
+        evaluationService.askEvalution(6L).enqueue(
             object : Callback<List<EvaluationData>>{
                 override fun onResponse(call: Call<List<EvaluationData>>, response: Response<List<EvaluationData>>) {
                     //TODO 통신은 됬지만 서버와 데이터를 맞출 필요가 있음
-                    Log.d("결과 : ", response.body()!!.get(0).toString())
+                    Log.d("고객평가조회 : ", response.body().toString())
                 }
 
                 override fun onFailure(call: Call<List<EvaluationData>>, t: Throwable) {

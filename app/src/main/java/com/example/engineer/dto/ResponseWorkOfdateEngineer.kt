@@ -1,8 +1,9 @@
 package com.example.engineer.dto
 
 data class ResponseWorkOfdateEngineer(
-    private val productName: String,
-    private val startTime: String,
-    private val status: Int
+    val scheduleNum: Long,
+    val productName: String,
+    val startTime: String,
+    val status: Int
 )
 

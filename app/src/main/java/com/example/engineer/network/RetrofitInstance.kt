@@ -11,11 +11,12 @@ import retrofit2.create
 // 레트로핏 인스턴스를 생성하는 클래스
 class RetrofitInstance {
     companion object{
-        private val BASE_URL = "http://192.168.0.4:"
-        private val inquerySchedule = "8000"
-        private val signIn = "8001"
-        private val Evaluation = "8002"
-        private val REPAIR = "8003"
+//        private val BASE_URL = "http://192.168.0.4:"
+        private val BASE_URL = "http://192.168.25.33:"
+        private val inquerySchedule = "8084"
+        private val signIn = "8082"
+        private val Evaluation = "8085"
+        private val REPAIR = "8083"
     }
 
     // 초기 로그인 레트로핏 인스턴스

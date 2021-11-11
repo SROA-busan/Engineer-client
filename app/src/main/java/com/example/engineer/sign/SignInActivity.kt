@@ -15,8 +15,7 @@ import retrofit2.Response
 class SignInActivity : AppCompatActivity() {
     companion object {
         //엔지니어 아이디
-        private lateinit var _EngineerId: String
-        val engineerId get() = _EngineerId
+        var engineerId = ""
     }
 
     private lateinit var binding: SignInActivityBinding
@@ -29,7 +28,7 @@ class SignInActivity : AppCompatActivity() {
 
 
         binding.signInButton.setOnClickListener {
-            _EngineerId = binding.engineerId.text.toString()
+            engineerId = binding.engineerId.text.toString()
             //통신 성공 [박상환 - 11.08]
             signIn(engineerId, binding.password.text.toString())
 //            startActivity(Intent(this, MainActivity::class.java))
@@ -58,7 +57,8 @@ class SignInActivity : AppCompatActivity() {
                 // 최초 로그인시 3
                 else if (response.body() == 3) {
                     Toast.makeText(applicationContext, "최초 로그인 입니다. 비밀번호를 변경해주세요", Toast.LENGTH_SHORT).show();
-                    startActivity(Intent(applicationContext, SettingPasswordActivity::class.java))
+                    val intent = Intent(applicationContext, SettingPasswordActivity::class.java)
+                    startActivity(intent)
                 }
                 else
                     Log.d("상태: ", "response.body() = " + response.body())
@@ -70,15 +70,5 @@ class SignInActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "실패", Toast.LENGTH_SHORT).show()
             }
         })
-
-//        service.engineerSettingPw().enqueue(object : Callback<Boolean>{
-//            override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
-//                TODO("Not yet implemented")
-//            }
-//
-//            override fun onFailure(call: Call<Boolean>, t: Throwable) {
-//                TODO("Not yet implemented")
-//            }
-//        })
     }
 }

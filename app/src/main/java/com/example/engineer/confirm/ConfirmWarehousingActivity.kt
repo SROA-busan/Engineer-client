@@ -47,7 +47,7 @@ class ConfirmWarehousingActivity : AppCompatActivity() {
                     call: Call<List<ResponseWorkOfdateEngineer>>,
                     response: Response<List<ResponseWorkOfdateEngineer>>
                 ) {
-                    Log.d("상태 : ", response.body().toString())
+                    Log.d("입고 현황조회 : ", response.body().toString())
                 }
 
                 override fun onFailure(call: Call<List<ResponseWorkOfdateEngineer>>, t: Throwable) {

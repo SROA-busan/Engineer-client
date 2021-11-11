@@ -6,14 +6,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.engineer.R
+import com.example.engineer.dto.EngineerBrieflySchedule
 import com.example.engineer.dto.ScheduleData
 
-class ScheduleAdapter(private val dataset: ArrayList<ScheduleData>)
+class ScheduleAdapter(private val dataset: ArrayList<EngineerBrieflySchedule>)
     : RecyclerView.Adapter<ScheduleAdapter.ScheduleDataViewHolder>(){
 
     interface OnItemClickListener{
         fun onItemClick(view: View, position: Int)
     }
+    
+    //TODO schedule_viewgroup 레이아웃 수정하기
 
 //    private var
     private lateinit var mOnItemClickListener: OnItemClickListener
@@ -45,14 +48,13 @@ class ScheduleAdapter(private val dataset: ArrayList<ScheduleData>)
     }
 
     override fun onBindViewHolder(holder: ScheduleAdapter.ScheduleDataViewHolder, position: Int) {
-        var process  = dataset[position].process
-        holder.dateTime.text  = dataset[position].dateTime
-        holder.product.text  = dataset[position].product
-        holder.address.text  = dataset[position].address
-        holder.phoneNum.text  = dataset[position].phoneNum
-        holder.process.text = process
+        var state  = dataset[position].state.toString()
+        holder.dateTime.text  = dataset[position].startTime
+        holder.product.text  = dataset[position].productName
+//        holder.address.text  = dataset[position].address
+        holder.process.text = state
 
-        when(process){
+        when(state){
             "방문예정" -> holder.process.setBackgroundResource(R.drawable.label_red)
             "진행중" -> holder.process.setBackgroundResource(R.drawable.label_blue)
             "입고" -> holder.process.setBackgroundResource(R.drawable.label_yellow)

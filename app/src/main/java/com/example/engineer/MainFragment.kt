@@ -11,15 +11,20 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.engineer.databinding.NavFragmentMainBinding
+import com.example.engineer.dto.EngineerBrieflySchedule
+import com.example.engineer.dto.ResponseLoginEngineer
 import com.example.engineer.dto.ScheduleData
+import com.example.engineer.network.RetrofitInstance
 import com.example.engineer.schedule.ScheduleAdapter
 import com.example.engineer.schedule.ScheduleDetailActivity
 import com.example.engineer.schedule.ScheduleFragment
+import com.example.engineer.sign.SignInActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainFragment : Fragment() {
-    companion object {
-        val dataset = ArrayList<ScheduleData>()
-    }
+    val dataset = ArrayList<EngineerBrieflySchedule>()
 
     private var _binding: NavFragmentMainBinding? = null
     private val binding get() = _binding!!
@@ -35,9 +40,13 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //TODO r
+
         //툴바 타이틀 설정
         setTitle()
-        setRecyclerView()
+        //엔지니어 일정 로드
+        getEngineerBrieflySchedule()
     }
 
     //툴바 타이틀 설정
@@ -46,29 +55,21 @@ class MainFragment : Fragment() {
         mMainactivity.setTitle("홈")
     }
 
+    //일정 리스트
     fun setRecyclerView() {
         val mRecyclerView = binding.mainRecycler
-
-        val mSchedule = ScheduleData(
-            "2021",
-            "냉장고",
-            "대연동",
-            "방문예정",
-            "010",
-            "안오노"
-        )
-
-
-        dataset.add(mSchedule)
-
+    
         val intent = Intent(context, ScheduleDetailActivity::class.java)
-        intent.putExtra("scheduleData", mSchedule)
+        
         // 어댑터 설정
         val adapter = ScheduleAdapter(dataset)
         // layoutManager 설정
 
         adapter.setOnItemClickListener(object : ScheduleAdapter.OnItemClickListener {
             override fun onItemClick(view: View, position: Int) {
+                //데이터 전달
+                intent.putExtra("brieflySchedule", dataset[position])
+                //화면 이동
                 startActivity(intent)
             }
         })
@@ -76,4 +77,27 @@ class MainFragment : Fragment() {
         mRecyclerView.layoutManager = LinearLayoutManager(context)
     }
 
+    //엔지니어 일정 조회
+    private fun getEngineerBrieflySchedule(){
+        val brieflyScheduleService = RetrofitInstance().getData()
+        brieflyScheduleService.engineeerMainPage(SignInActivity.engineerId).enqueue(object : Callback<ResponseLoginEngineer>{
+            override fun onResponse(call: Call<ResponseLoginEngineer>, response: Response<ResponseLoginEngineer>) {
+                Log.d("상태 : ", response.body().toString())
+                //데이터가 있을 시
+                if (response.body() != null) {
+                    //데이터 추가
+                    response.body()!!.list.forEach {
+                        dataset.add(it)
+                    }
+                    //리사이클러뷰 설정
+                    setRecyclerView()
+                }
+                
+            }
+
+            override fun onFailure(call: Call<ResponseLoginEngineer>, t: Throwable) {
+                Log.e("통신 실패 : ", t.toString())
+            }
+        })
+    }
 }
