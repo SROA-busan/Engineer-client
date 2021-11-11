@@ -35,6 +35,13 @@ class ScheduleDetailActivity : AppCompatActivity() {
         setButtonEvent(null, brieflySchedule)
         //일정 상세내용
         selectOneSchedule(brieflySchedule.scheduleNum)
+
+        // 입고처리
+        getRequestWarehousing(brieflySchedule.scheduleNum)
+        // 고객대면, 처리완료
+        getRequestComplete(brieflySchedule.scheduleNum)
+        // 입고중인 장비 수리 완료
+        getRequestRepair(brieflySchedule.scheduleNum)
     }
 
     private fun setButtonEvent(pageName: String?, brieflySchedule: EngineerBrieflySchedule) {
@@ -77,6 +84,44 @@ class ScheduleDetailActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<EngineerDetailSchedule>, t: Throwable) {
+                Log.e("통신 실패 : ", t.toString())
+            }
+        })
+    }
+    // 입고처리
+    fun getRequestWarehousing(scheduleNum: Long){
+        val requestWarehousing = RetrofitInstance().getRepairSchdule()
+        requestWarehousing.requestWarehousing(scheduleNum).enqueue(object : Callback<Boolean>{
+            override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
+                Log.d("입고처리 : ", response.body().toString())
+            }
+            override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                Log.e("통신 실패 : ", t.toString())
+            }
+        })
+    }
+
+    // 고객대면, 처리완료
+    fun getRequestComplete(scheduleNum: Long){
+        val requestComplete = RetrofitInstance().getRepairSchdule()
+        requestComplete.requestComplete(scheduleNum).enqueue(object : Callback<Boolean>{
+            override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
+                Log.d("고객대면, 처리완료 : ", response.body().toString())
+            }
+            override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                Log.e("통신 실패 : ", t.toString())
+            }
+        })
+    }
+
+    // 입고중인 장비 수리 완료
+    fun getRequestRepair(scheduleNum: Long){
+        val requestRepair = RetrofitInstance().getRepairSchdule()
+        requestRepair.requestRepair(scheduleNum).enqueue(object : Callback<Boolean>{
+            override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
+                Log.d("입고중인 장비 수리 완료, 처리완료 : ", response.body().toString())
+            }
+            override fun onFailure(call: Call<Boolean>, t: Throwable) {
                 Log.e("통신 실패 : ", t.toString())
             }
         })

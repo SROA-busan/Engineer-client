@@ -47,6 +47,8 @@ class MainFragment : Fragment() {
         setTitle()
         //엔지니어 일정 로드
         getEngineerBrieflySchedule()
+
+
     }
 
     //툴바 타이틀 설정

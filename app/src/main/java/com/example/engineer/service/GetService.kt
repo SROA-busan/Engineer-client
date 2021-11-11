@@ -48,11 +48,18 @@ interface GetEvaluation {
     fun askEvalution(@Path("engineerNum") engineerNum: Long): Call<List<EvaluationData>>
 }
 
-//엔지니어 일정 로드
+// 스케줄 상태
 interface GetRepairSchduleService{
-    //완료 여부 조회
-    @POST("repair/engineer/requestForCompletion")
-    fun requestForCompletion(@Body form: ScheduleHandling): Call<Boolean>
+    // 입고 처리
+    @GET("repair/engineer/requestWarehousing/{scheduleNum}")
+    fun requestWarehousing(@Path("scheduleNum") schduleNum:Long):Call<Boolean>
 
+    // 고객대면, 처리완료
+    @GET("repair/engineer/requestComplete/{scheduleNum}")
+    fun requestComplete(@Path("scheduleNum") schduleNum:Long):Call<Boolean>
+
+    // 입고중인 장비 수리 완료
+    @GET("repair/engineer/requestRepair/{scheduleNum}")
+    fun requestRepair(@Path("scheduleNum") schduleNum:Long):Call<Boolean>
 }
 
