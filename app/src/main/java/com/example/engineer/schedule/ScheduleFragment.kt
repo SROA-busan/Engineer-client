@@ -1,27 +1,26 @@
 package com.example.engineer.schedule
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.engineer.MainActivity
-import com.example.engineer.R
 import com.example.engineer.databinding.NavFragmentScheduleBinding
 import com.example.engineer.dto.EngineerBrieflySchedule
+import com.example.engineer.dto.ResponseLoginEngineer
 import com.example.engineer.dto.ResponseWorkCntOfMonthEngineer
 import com.example.engineer.dto.ResponseWorkOfdateEngineer
-import com.example.engineer.dto.ScheduleData
 import com.example.engineer.network.RetrofitInstance
 import com.example.engineer.sign.SignInActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.SimpleDateFormat
+import java.time.LocalDate
 
 
 class ScheduleFragment : Fragment() {
@@ -41,6 +40,7 @@ class ScheduleFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -48,7 +48,12 @@ class ScheduleFragment : Fragment() {
         // recyclerView 설정
         setRecyclerView()
 
+        var today = LocalDate.now().toString().substring(0,7)
+        Log.d("날짜", today)
+        workOfMonth(today)
         setCalendar()
+
+        getEngineerBrieflySchedule()
     }
 
     //툴바 타이틀 설정
@@ -65,7 +70,7 @@ class ScheduleFragment : Fragment() {
             //날짜 변경시 데이터셋 클리어
             dataset.clear()
             //월, 일
-            var vMonth = month.toString()
+            var vMonth = (month+1).toString()
             var vDay = dayOfMonth.toString()
 
             //포맷 맞춤
@@ -84,10 +89,12 @@ class ScheduleFragment : Fragment() {
         }
     }
 
+    // 일정 있는 날짜 표시
+    //fun chekedDayDecorator()
+
     //recyclerView 호출
     fun setRecyclerView() {
         val mRecyclerView = binding.scheduleRecycler
-
         val intent = Intent(context, ScheduleDetailActivity::class.java)
 
         // 어댑터 설정
@@ -114,12 +121,12 @@ class ScheduleFragment : Fragment() {
             ) {
                 Log.d("월별 일정조회", response.body().toString())
             }
-
             override fun onFailure(call: Call<List<ResponseWorkCntOfMonthEngineer>>, t: Throwable) {
                 Log.e("통신 실패 ", t.toString())
             }
         })
     }
+
     //일간 일정 조회
     fun workOfdate(date: String){
         val workOfDateService = RetrofitInstance().getData()
@@ -146,6 +153,28 @@ class ScheduleFragment : Fragment() {
 
             override fun onFailure(call: Call<List<ResponseWorkOfdateEngineer>>, t: Throwable) {
                 Log.e("통신 실패 ", t.toString())
+            }
+        })
+    }
+
+    //엔지니어 오늘 일정 조회
+    private fun getEngineerBrieflySchedule(){
+        val brieflyScheduleService = RetrofitInstance().getData()
+        brieflyScheduleService.engineeerMainPage(SignInActivity.engineerId).enqueue(object : Callback<ResponseLoginEngineer>{
+            override fun onResponse(call: Call<ResponseLoginEngineer>, response: Response<ResponseLoginEngineer>) {
+                Log.d("상태 : ", response.body().toString())
+                //데이터가 있을 시
+                if (response.body() != null) {
+                    //데이터 추가
+                    response.body()!!.list.forEach {
+                        dataset.add(it)
+                    }
+                    //리사이클러뷰 설정
+                    setRecyclerView()
+                }
+            }
+            override fun onFailure(call: Call<ResponseLoginEngineer>, t: Throwable) {
+                Log.e("통신 실패 : ", t.toString())
             }
         })
     }

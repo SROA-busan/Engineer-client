@@ -6,18 +6,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentContainer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.engineer.databinding.NavFragmentMainBinding
 import com.example.engineer.dto.EngineerBrieflySchedule
 import com.example.engineer.dto.ResponseLoginEngineer
-import com.example.engineer.dto.ScheduleData
 import com.example.engineer.network.RetrofitInstance
 import com.example.engineer.schedule.ScheduleAdapter
 import com.example.engineer.schedule.ScheduleDetailActivity
-import com.example.engineer.schedule.ScheduleFragment
 import com.example.engineer.sign.SignInActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -40,8 +36,6 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        //TODO r
 
         //툴바 타이틀 설정
         setTitle()
@@ -79,7 +73,7 @@ class MainFragment : Fragment() {
         mRecyclerView.layoutManager = LinearLayoutManager(context)
     }
 
-    //엔지니어 일정 조회
+    //엔지니어 오늘 일정 조회
     private fun getEngineerBrieflySchedule(){
         val brieflyScheduleService = RetrofitInstance().getData()
         brieflyScheduleService.engineeerMainPage(SignInActivity.engineerId).enqueue(object : Callback<ResponseLoginEngineer>{
@@ -93,6 +87,10 @@ class MainFragment : Fragment() {
                     }
                     //리사이클러뷰 설정
                     setRecyclerView()
+                    binding.engineerName.text = response.body()!!.name
+                    binding.serviceCenter.text = response.body()!!.centerName
+                    binding.engineerAvg.text = response.body()!!.avgScore.toString()
+
                 }
                 
             }

@@ -4,8 +4,8 @@ import java.io.Serializable
 import java.sql.Timestamp
 
 class EvaluationData (
-    val classifyName: String,
-    val writeDate: Timestamp,
+    val evaluationNum: Long,
+    val writeDate: String,
     val content: String,
     val score: Int
 ) : Serializable

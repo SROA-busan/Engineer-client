@@ -7,7 +7,7 @@ data class EngineerDetailSchedule(
     val customerAddress: String,
     val customerPhoneNum: String,
     val productName: String,
-    val state: Int,
+    var state: Int,
     val content: String
 )
 

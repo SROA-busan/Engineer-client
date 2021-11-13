@@ -44,8 +44,8 @@ interface GetDataService{
 //평가조회
 interface GetEvaluation {
     //평가 조회
-    @GET("/evaluation/engineer/askEvaluation/{engineerNum}")
-    fun askEvalution(@Path("engineerNum") engineerNum: Long): Call<List<EvaluationData>>
+    @GET("/evaluation/engineer/inqueryEvaluation/{id}")
+    fun inqueryEvalution(@Path("id") id: String): Call<List<EvaluationData>>
 }
 
 // 스케줄 상태

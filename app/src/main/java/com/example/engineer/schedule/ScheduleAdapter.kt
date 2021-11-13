@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.engineer.R
 import com.example.engineer.dto.EngineerBrieflySchedule
-import com.example.engineer.dto.ScheduleData
 
 class ScheduleAdapter(private val dataset: ArrayList<EngineerBrieflySchedule>)
     : RecyclerView.Adapter<ScheduleAdapter.ScheduleDataViewHolder>(){
@@ -16,7 +15,6 @@ class ScheduleAdapter(private val dataset: ArrayList<EngineerBrieflySchedule>)
         fun onItemClick(view: View, position: Int)
     }
     
-    //TODO schedule_viewgroup 레이아웃 수정하기
 
 //    private var
     private lateinit var mOnItemClickListener: OnItemClickListener
@@ -28,9 +26,9 @@ class ScheduleAdapter(private val dataset: ArrayList<EngineerBrieflySchedule>)
     inner  class ScheduleDataViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val dateTime = view.findViewById<TextView>(R.id.schedule_datetime)
         val product = view.findViewById<TextView>(R.id.schedule_product)
-        val address = view.findViewById<TextView>(R.id.schedule_address)
-        val process = view.findViewById<TextView>(R.id.schedule_process)
-        val phoneNum = view.findViewById<TextView>(R.id.schedule_phoneNum)
+//        val address = view.findViewById<TextView>(R.id.schedule_address)
+        val state = view.findViewById<TextView>(R.id.schedule_process)
+//        val phoneNum = view.findViewById<TextView>(R.id.schedule_phoneNum)
 
 
         init {
@@ -52,13 +50,32 @@ class ScheduleAdapter(private val dataset: ArrayList<EngineerBrieflySchedule>)
         holder.dateTime.text  = dataset[position].startTime
         holder.product.text  = dataset[position].productName
 //        holder.address.text  = dataset[position].address
-        holder.process.text = state
 
         when(state){
-            "방문예정" -> holder.process.setBackgroundResource(R.drawable.label_red)
-            "진행중" -> holder.process.setBackgroundResource(R.drawable.label_blue)
-            "입고" -> holder.process.setBackgroundResource(R.drawable.label_yellow)
-            "수리완료" -> holder.process.setBackgroundResource(R.drawable.label_green)
+            "0" -> {
+                holder.state.setBackgroundResource(R.drawable.label_red)
+                holder.state.text = "방문예정"
+            }
+            "1" -> {
+                holder.state.setBackgroundResource(R.drawable.label_blue)
+                holder.state.text ="처리완료"
+            }
+            "2" -> {
+                holder.state.setBackgroundResource(R.drawable.label_yellow)
+                holder.state.text ="수령"
+            }
+            "3" -> {
+                holder.state.setBackgroundResource(R.drawable.label_green)
+                holder.state.text ="수리완료"
+            }
+            "4" -> {
+                holder.state.setBackgroundResource(R.drawable.label_gray)
+                holder.state.text ="반납예약완료"
+            }
+            "5" -> {
+                holder.state.setBackgroundResource(R.drawable.label_black)
+                holder.state.text ="평가완료"
+            }
         }
     }
 

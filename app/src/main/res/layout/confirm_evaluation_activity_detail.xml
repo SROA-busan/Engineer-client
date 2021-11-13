@@ -21,7 +21,7 @@
                     android:hint="냉장고"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/evaluation_detail_product"
+                    android:id="@+id/detail_product"
                     android:layout_marginTop="@dimen/pageMarginAndOffset"
                     android:layout_marginLeft="@dimen/pageMargin"
                     android:layout_marginStart="@dimen/pageMargin"
@@ -51,7 +51,7 @@
                     android:scrollHorizontally="false"
                     android:minWidth="10dip"
                     android:maxWidth="5dip"
-                    android:id="@+id/evaluation_detail_content"/>
+                    android:id="@+id/detail_content"/>
 
             <TextView
                     android:text="@{evaluationData.content}"
@@ -62,7 +62,7 @@
                     android:layout_marginStart="@dimen/pageMargin"
                     android:layout_marginTop="@dimen/pageMargin"
                     android:textSize="18sp"
-                    android:id="@+id/evaluation_detail_dataTime"/>
+                    android:id="@+id/detail_dataTime"/>
 
 
 
