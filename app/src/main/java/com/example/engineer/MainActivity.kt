@@ -1,5 +1,6 @@
 package com.example.engineer
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -21,11 +22,16 @@ class MainActivity : AppCompatActivity() {
         binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(view.root)
 
+        if(Intent().hasExtra("pageName")) {
+            val pageName = Intent().getStringExtra("pageName")!!
+            setDetailNextPage(pageName)
+        }
+
         setActionBar()
         replaceFragment(MainFragment())
         setNavFragment()
 
-    }
+        }
 
     //툴바 설정
     private fun setActionBar(){
@@ -33,8 +39,8 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         val actionBar = supportActionBar
 
-        actionBar!!.setDisplayHomeAsUpEnabled(true) //왼쪽버튼 사용여부
-        actionBar!!.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_24) //왼쪽버튼 이미지 설정
+//        actionBar!!.setDisplayHomeAsUpEnabled(true) //왼쪽버튼 사용여부
+//        actionBar!!.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_24) //왼쪽버튼 이미지 설정
     }
 
     //툴바 이름변경
@@ -51,6 +57,14 @@ class MainActivity : AppCompatActivity() {
     //툴바 메뉴 이벤트
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return super.onOptionsItemSelected(item)
+    }
+
+    // ScheduleDetailActivity에서 OK 눌렀을때 가는 프래그먼트
+    private fun setDetailNextPage(page: String){
+        when(page){
+            "schF" -> replaceFragment(ScheduleFragment())
+            "mainF" -> replaceFragment(MainFragment())
+        }
     }
 
     //하단 네비

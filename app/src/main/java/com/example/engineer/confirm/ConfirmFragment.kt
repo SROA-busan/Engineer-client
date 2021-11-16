@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.engineer.MainActivity
 import com.example.engineer.databinding.ConfirmFragmentMainBinding
-import com.example.engineer.dto.EvaluationData
+import com.example.engineer.dto.ResponseEngineerEvaluation
 
 class ConfirmFragment: Fragment() {
     companion object{
-        val dataset = ArrayList<EvaluationData>()
+        val dataset = ArrayList<ResponseEngineerEvaluation>()
     }
 
     private var _binding: ConfirmFragmentMainBinding? = null
