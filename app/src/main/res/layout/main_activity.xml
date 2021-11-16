@@ -14,7 +14,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/skyblue"
             app:title="test"
-            app:titleTextColor="@color/white"
+            app:titleTextColor="@color/blueblack"
     >
     </androidx.appcompat.widget.Toolbar>
     <FrameLayout

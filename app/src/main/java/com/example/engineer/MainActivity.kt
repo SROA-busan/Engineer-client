@@ -39,8 +39,8 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         val actionBar = supportActionBar
 
-        actionBar!!.setDisplayHomeAsUpEnabled(true) //왼쪽버튼 사용여부
-        actionBar!!.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_24) //왼쪽버튼 이미지 설정
+//        actionBar!!.setDisplayHomeAsUpEnabled(true) //왼쪽버튼 사용여부
+//        actionBar!!.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_24) //왼쪽버튼 이미지 설정
     }
 
     //툴바 이름변경

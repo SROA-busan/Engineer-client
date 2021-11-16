@@ -26,14 +26,18 @@
             android:layout_marginTop="@dimen/pageMarginHalf"/>
 
     <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/evaluation_classifyName"
+            app:layout_constraintTop_toBottomOf="@+id/evaluation_writeDate"
+            app:layout_constraintStart_toStartOf="@+id/evaluation_writeDate"/>
+    <TextView
             android:text="친절해요"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/evaluation_content"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="@dimen/pageMargin"
-            android:layout_marginStart="@dimen/pageMargin"
-            app:layout_constraintTop_toBottomOf="@+id/evaluation_writeDate"/>
+            app:layout_constraintStart_toStartOf="@+id/evaluation_classifyName"
+            app:layout_constraintTop_toBottomOf="@+id/evaluation_classifyName"/>
     <TextView
             android:text="4.5"
             android:layout_width="wrap_content"

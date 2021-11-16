@@ -49,7 +49,7 @@ class ScheduleAdapter(private val dataset: ArrayList<EngineerBrieflySchedule>)
         var state  = dataset[position].state.toString()
         holder.dateTime.text  = dataset[position].startTime
         holder.product.text  = dataset[position].productName
-//        holder.address.text  = dataset[position].address
+
 
         when(state){
             "0" -> {

@@ -45,7 +45,7 @@ interface GetDataService{
 interface GetEvaluation {
     //평가 조회
     @GET("/evaluation/engineer/inqueryEvaluation/{id}")
-    fun inqueryEvalution(@Path("id") id: String): Call<List<EvaluationData>>
+    fun inqueryEvalution(@Path("id") id: String): Call<List<ResponseEngineerEvaluation>>
 }
 
 // 스케줄 상태

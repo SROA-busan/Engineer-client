@@ -11,10 +11,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.engineer.MainActivity
 import com.example.engineer.databinding.NavFragmentScheduleBinding
-import com.example.engineer.dto.EngineerBrieflySchedule
-import com.example.engineer.dto.ResponseLoginEngineer
-import com.example.engineer.dto.ResponseWorkCntOfMonthEngineer
-import com.example.engineer.dto.ResponseWorkOfdateEngineer
+import com.example.engineer.dto.*
 import com.example.engineer.network.RetrofitInstance
 import com.example.engineer.sign.SignInActivity
 import retrofit2.Call
@@ -24,9 +21,7 @@ import java.time.LocalDate
 
 
 class ScheduleFragment : Fragment() {
-    companion object {
         val dataset = ArrayList<EngineerBrieflySchedule>()
-    }
 
     private var _binding: NavFragmentScheduleBinding? = null
     private val binding get() = _binding!!
@@ -139,12 +134,16 @@ class ScheduleFragment : Fragment() {
                 if(response.body() != null) {
                     response.body()!!.forEach {
                         it.apply {
-                            dataset.add(EngineerBrieflySchedule(
-                                scheduleNum,
-                                startTime,
-                                productName,
-                                status)
-                            )
+//                            if(status!=4&&) {
+                                dataset.add(
+                                    EngineerBrieflySchedule(
+                                        scheduleNum,
+                                        startTime,
+                                        productName,
+                                        status
+                                    )
+                                )
+//                            }
                         }
                     }
                     setRecyclerView()

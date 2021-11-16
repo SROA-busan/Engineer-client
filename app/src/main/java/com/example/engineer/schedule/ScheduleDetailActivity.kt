@@ -28,7 +28,6 @@ class ScheduleDetailActivity : AppCompatActivity() {
         val brieflySchedule = intent.getSerializableExtra("brieflySchedule") as EngineerBrieflySchedule
         Log.d("brieflySchedule", brieflySchedule.toString())
 
-
         // 입고버튼
         warehousingButtonEvent(brieflySchedule)
 
@@ -37,8 +36,6 @@ class ScheduleDetailActivity : AppCompatActivity() {
         // 입고 수리완료 버튼
         warehousingRepairCompleteButtonEvent(brieflySchedule)
 
-        //버튼 이벤트 설정
-        setButtonEvent()
         //일정 상세내용
         selectOneSchedule(brieflySchedule.scheduleNum)
     }
@@ -84,12 +81,6 @@ class ScheduleDetailActivity : AppCompatActivity() {
         }
     }
 
-    // OK 버튼 (없애도 상관 X)
-    private fun setButtonEvent() {
-        binding.detailOkbutton.setOnClickListener {
-            startActivity(Intent(applicationContext, MainActivity::class.java))
-        }
-    }
 
     //일정 상세내용
     fun selectOneSchedule(scheduelNum: Long) {
@@ -97,10 +88,28 @@ class ScheduleDetailActivity : AppCompatActivity() {
         selectOneSchedule.selectOneSchedule(scheduelNum).enqueue(object : Callback<EngineerDetailSchedule> {
             override fun onResponse(call: Call<EngineerDetailSchedule>, response: Response<EngineerDetailSchedule>) {
                 Log.d("상태 : ", response.body().toString())
+                binding.detailReservationDate.text = "예약날짜: "
+
+                val status = response.body()?.state
+                when (status) {
+                    1, 5 -> {
+                        binding.detailCompleteDate.text = "처리완료일: "
+                        binding.detailEndDate.text = response.body()?.endTime.toString()
+                    }
+                    4 -> {
+                        binding.detailCompleteDate.text = "반납예약일: "
+                        binding.detailEndDate.text = response.body()?.endTime.toString()
+                    }
+                    else -> {
+                        binding.detailCompleteDate.text = ""
+                        binding.detailEndDate.text = ""
+                    }
+
+                }
                 binding.detailProduct.text = response.body()?.productName.toString()
                 binding.detailContent.text = response.body()?.content.toString()
-                binding.detailDataTime.text = response.body()?.startTime.toString()
                 binding.detailUserAddressInfo.text = response.body()?.customerAddress.toString()
+                binding.detailStartDate.text = response.body()?.startTime.toString()
             }
 
             override fun onFailure(call: Call<EngineerDetailSchedule>, t: Throwable) {

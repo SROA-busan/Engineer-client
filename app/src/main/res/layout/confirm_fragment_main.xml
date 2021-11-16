@@ -28,16 +28,6 @@
                 android:layout_marginLeft="@dimen/pageMarginAndOffset"
                 android:layout_marginStart="@dimen/pageMarginAndOffset"/>
 
-        <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="@dimen/arrow_length"
-                android:layout_height="@dimen/arrow_length"
-                android:src="@drawable/baseline_arrow_forward_ios_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:scrollbarSize="10dp"
-                android:layout_marginRight="@dimen/pageMarginAndOffset"
-                android:layout_marginEnd="@dimen/pageMarginAndOffset"
-                app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,15 +50,5 @@
                 android:layout_marginLeft="@dimen/pageMarginAndOffset"
                 android:layout_marginStart="@dimen/pageMarginAndOffset"/>
 
-        <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="@dimen/arrow_length"
-                android:layout_height="@dimen/arrow_length"
-                android:src="@drawable/baseline_arrow_forward_ios_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:scrollbarSize="10dp"
-                android:layout_marginRight="@dimen/pageMarginAndOffset"
-                android:layout_marginEnd="@dimen/pageMarginAndOffset"
-                app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

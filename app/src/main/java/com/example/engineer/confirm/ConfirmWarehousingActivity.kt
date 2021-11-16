@@ -6,9 +6,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.engineer.MainActivity
+import com.example.engineer.R
 import com.example.engineer.databinding.ConfirmActivityWarehousingBinding
 import com.example.engineer.dto.EngineerBrieflySchedule
-import com.example.engineer.dto.EvaluationData
 import com.example.engineer.dto.ResponseWorkOfdateEngineer
 import com.example.engineer.network.RetrofitInstance
 import com.example.engineer.schedule.ScheduleAdapter
@@ -22,6 +23,8 @@ import retrofit2.Response
 class ConfirmWarehousingActivity : AppCompatActivity() {
     val dataset = ArrayList<EngineerBrieflySchedule>()
 
+    val view get() = binding!!
+
     private lateinit var binding: ConfirmActivityWarehousingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,9 +32,19 @@ class ConfirmWarehousingActivity : AppCompatActivity() {
         binding = ConfirmActivityWarehousingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         getWarehousing()
         setRecyclerView()
+        setActionBar()
+
     }
+
+    //툴바 설정
+    private fun setActionBar(){
+        val toolbar = view.confirmToolBar
+        setSupportActionBar(toolbar)
+    }
+
 
 
     private fun setRecyclerView() {
@@ -65,18 +78,18 @@ class ConfirmWarehousingActivity : AppCompatActivity() {
                 ) {
                     Log.d("입고 현황조회 : ", response.body().toString())
 
-                    // state가 2,3,4 일때
 
                     // 데이터가 있을때
                     if (response.body() != null) {
                         // 데이터 추가
                         response.body()!!.forEach {
                             it.apply {
+                                // state가 2,3,4 일때
                                 if (status != 0 && status != 1 && status != 5) {
                                     dataset.add(
                                         EngineerBrieflySchedule(
                                             scheduleNum,
-                                            startTime,
+                                            startTime.substring(0,10)+"  "+startTime.substring(12,16),
                                             productName,
                                             status
                                         )
@@ -85,6 +98,7 @@ class ConfirmWarehousingActivity : AppCompatActivity() {
                             }
                         }
                         setRecyclerView()
+
                     }
                 }
 
