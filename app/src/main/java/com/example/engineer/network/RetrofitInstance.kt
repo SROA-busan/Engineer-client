@@ -13,8 +13,6 @@ class RetrofitInstance {
 //        private val BASE_URL = "http://192.168.25.33:"
 //        private val BASE_URL = "http://192.168.162.78:"
 //        private val BASE_URL = "http://192.168.162.78:"
-        // AWS
-        private val BASE_URL = "http://sroa-lb-106540279.ap-northeast-2.elb.amazonaws.com:"
 
 //        private val Account_URL = "http://13.125.26.25:"
 //        private val Repair_URL = "http://3.34.186.100:"
@@ -35,6 +33,9 @@ class RetrofitInstance {
 //        private val Repair_URL = "http://172.30.1.42:"
 //        private val Inquery_URL = "http://172.30.1.42:"
 //        private val Evaluation_URL = "http://172.30.1.42:"
+
+        // AWS
+        private val BASE_URL = "http://sroa-lb-206178950.ap-northeast-2.elb.amazonaws.com:"
 
         private val signIn = "8081"
         private val repair = "8082"

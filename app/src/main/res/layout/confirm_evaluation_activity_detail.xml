@@ -27,7 +27,7 @@
             </androidx.appcompat.widget.Toolbar>
             <TextView
                     android:text="@{evaluationData.classifyName}"
-                    android:hint="냉장고"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/detail_product"
@@ -50,7 +50,7 @@
                         android:layout_marginTop="8dp" app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginLeft="16dp" android:layout_marginStart="16dp"/>
                 <TextView
-                        android:hint="별별별별별"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/detail_score"
@@ -61,7 +61,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
             <TextView
                     android:text="@{evaluationData.content}"
-                    android:hint="제품 상세내용"
                     android:layout_width="@dimen/layout_width"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/pageMargin"
@@ -75,7 +74,6 @@
 
             <TextView
                     android:text="@{evaluationData.writeDate}"
-                    android:hint="문의일시 : 2021년 10월 12일 오전 10:30 ~ 11:30"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/pageMargin"

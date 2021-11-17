@@ -94,11 +94,11 @@ class ScheduleDetailActivity : AppCompatActivity() {
                 when (status) {
                     1, 5 -> {
                         binding.detailCompleteDate.text = "처리완료일: "
-                        binding.detailEndDate.text = response.body()?.endTime.toString()
+                        binding.detailEndDate.text = response.body()!!.endTime
                     }
                     4 -> {
                         binding.detailCompleteDate.text = "반납예약일: "
-                        binding.detailEndDate.text = response.body()?.endTime.toString()
+                        binding.detailEndDate.text = response.body()!!.endTime
                     }
                     else -> {
                         binding.detailCompleteDate.text = ""

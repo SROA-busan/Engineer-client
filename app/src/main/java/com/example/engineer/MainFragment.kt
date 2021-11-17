@@ -37,6 +37,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        dataset.clear()
         //툴바 타이틀 설정
         setTitle()
         //엔지니어 일정 로드
@@ -54,9 +55,9 @@ class MainFragment : Fragment() {
     //일정 리스트
     fun setRecyclerView() {
         val mRecyclerView = binding.mainRecycler
-    
+
         val intent = Intent(context, ScheduleDetailActivity::class.java)
-        
+
         // 어댑터 설정
         val adapter = ScheduleAdapter(dataset)
         // layoutManager 설정
@@ -74,16 +75,61 @@ class MainFragment : Fragment() {
     }
 
     //엔지니어 오늘 일정 조회
-    private fun getEngineerBrieflySchedule(){
+    private fun getEngineerBrieflySchedule() {
         val brieflyScheduleService = RetrofitInstance().getData()
-        brieflyScheduleService.engineeerMainPage(SignInActivity.engineerId).enqueue(object : Callback<ResponseLoginEngineer>{
-            override fun onResponse(call: Call<ResponseLoginEngineer>, response: Response<ResponseLoginEngineer>) {
-                Log.d("상태 : ", response.body().toString())
-                //데이터가 있을 시
-                if (response.body() != null) {
-                    //데이터 추가
-                    response.body()!!.list.forEach {
-                        dataset.add(it)
+        brieflyScheduleService.engineeerMainPage(SignInActivity.engineerId)
+            .enqueue(object : Callback<ResponseLoginEngineer> {
+                override fun onResponse(call: Call<ResponseLoginEngineer>, response: Response<ResponseLoginEngineer>) {
+                    Log.d("상태 : ", response.body().toString())
+                    //데이터가 있을 시
+                    var temp = arrayOfNulls<EngineerBrieflySchedule>(response.body()!!.list.size)
+                    var temp2 = arrayOfNulls<EngineerBrieflySchedule>(response.body()!!.list.size)
+//                    response.body()!!.list.forEachIndexed { index, it ->
+//                        temp[index] = it.scheduleNum
+//                    }
+
+                    if (response.body() != null) {
+
+                            response.body()!!.list.forEachIndexed {index,it->
+                                // 확인
+                                temp2[index]=it
+                                var cnt = index
+                                Log.d("사이즈", cnt.toString())
+
+                                if(index==0){
+                                    temp[index]=it
+                                    dataset.add(it)
+                                }else{
+                                    for(i:Int in 0..cnt-1){
+                                        if(temp2[i]?.scheduleNum==it.scheduleNum){
+                                            break
+                                        }
+                                        if(index>0&&temp2[i]?.scheduleNum!=it.scheduleNum){
+                                            dataset.add(it)
+                                            break
+                                        }
+
+                                    }
+                                }
+
+
+                                Log.d("데이터셋", dataset.size.toString())
+
+//                                else if(index>0 && it.scheduleNum!=temp[index-1]!!.scheduleNum){
+//                                    for(i : Int in 0..cnt){
+//                                        if(temp2[i]!!.scheduleNum==it.scheduleNum){
+//
+//                                        }
+//                                    }
+//                                    temp[index]=it
+//                                    dataset.add(it)
+//                                }
+
+
+                                Log.d("데이터 확인", dataset.toString())
+                            }
+
+
                     }
                     //리사이클러뷰 설정
                     setRecyclerView()
@@ -92,12 +138,13 @@ class MainFragment : Fragment() {
                     binding.engineerAvg.text = response.body()!!.avgScore.toString()
 
                 }
-                
-            }
 
-            override fun onFailure(call: Call<ResponseLoginEngineer>, t: Throwable) {
-                Log.e("통신 실패 : ", t.toString())
-            }
-        })
+
+                override fun onFailure(call: Call<ResponseLoginEngineer>, t: Throwable) {
+                    Log.e("통신 실패 : ", t.toString())
+                }
+            })
     }
+
+
 }

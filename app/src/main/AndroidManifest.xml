@@ -23,7 +23,7 @@
         <activity android:name=".confirm.ConfirmEvaluationActivity"/>
         <activity
                 android:name=".SplashActivity"
-                android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+                android:theme="@style/Theme.Engineer">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
